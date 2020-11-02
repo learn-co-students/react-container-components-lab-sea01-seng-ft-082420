@@ -10,13 +10,13 @@ const URL = 'https://api.nytimes.com/svc/movies/v2/reviews/search.json?'
 export default class SearchableMovieReviewsContainer extends Component {
 
     state = {
-        movies: [],
-        text: ''
+        reviews: [],
+        searchTerm: ''
     }
 
     handleChange = e => {
         this.setState({
-            text: e.target.value
+            searchTerm: e.target.value
         })
     }
 
@@ -27,7 +27,7 @@ export default class SearchableMovieReviewsContainer extends Component {
         .then(resp => resp.json())
         .then(data => {
             this.setState({
-                movies: data.results
+                reviews: data.results
             })
         })
     }
@@ -38,12 +38,12 @@ export default class SearchableMovieReviewsContainer extends Component {
                 <div>
                     <h1>Movie Review Search</h1>
                     <form onSubmit={e => this.onSubmit(e)} className='ui form'>
-                        <input type='text' value={this.state.text} onChange={(e) => this.handleChange(e)} />
+                        <input type='text' value={this.state.searchTerm} onChange={(e) => this.handleChange(e)} />
                         <button type='submit'/>
                     </form>
                 </div>
                 <div className='review-list latest-movie-reviews ui centered four cards'>
-                    {this.state.movies.map( movie => <MovieReviews movie={movie} />)}  
+                    {this.state.reviews.map( review => <MovieReviews movie={review} />)}  
                 </div>
             </div>
         )

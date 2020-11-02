@@ -10,7 +10,7 @@ const URL = 'https://api.nytimes.com/svc/movies/v2/reviews/all.json?'
 export default class LatestMovieReviewsContainer extends Component {
 
     state = {
-        movies: []
+        reviews: []
     }
 
     componentDidMount() {
@@ -26,7 +26,7 @@ export default class LatestMovieReviewsContainer extends Component {
     render() {
         return (
             <div className='review-list latest-movie-reviews ui centered four cards'>
-                {this.state.movies.map( movie => <MovieReviews movie={movie} />)}  
+                {this.state.reviews.map( review => <MovieReviews movie={review} />)}  
             </div>  
         )
     }
