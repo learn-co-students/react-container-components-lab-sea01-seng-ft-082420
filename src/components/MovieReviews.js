@@ -1,67 +1,62 @@
-// Code MovieReviews Here
-import React, {Fragment} from 'react'
+// // Code MovieReviews Here
+// import React, {Fragment} from 'react'
 
-const MovieReviews = (props) => {
+// const MovieReviews = (props) => {
     
-     let {headline , byline, display_title, summary_short, publication_date } = props.review 
+//      let {headline , byline, display_title, summary_short, publication_date } = props.review 
 
-    return (
-        <div>
-        {(props.review !== undefined) ?
-        
-       <Fragment>
-            <p>{headline}</p>
-            <p>author: {byline}</p>
-            <p>Title: {display_title}</p>
+//     return (
+
+//        <Fragment>
+//             <p>{headline}</p>
+//             <p>author: {byline}</p>
+//             <p>Title: {display_title}</p>
             
-            <p>Summary: {summary_short}</p>
-            <p>published: {publication_date}</p>
-        </Fragment> :
-            <p></p>
-        } 
-        </div>
-    )
-}
+//             <p>Summary: {summary_short}</p>
+//             <p>published: {publication_date}</p>
+//         </Fragment>
+//     )
+// }
+
+// MovieReviews.defaultProps = {
+//     reviews: []
+// }
+
+// export default MovieReviews
+
+import React from 'react';
+
+const Review = ({
+  headline,
+  byline,
+  link,
+  summary_short
+}) => {
+  return (
+
+    <div
+      key={headline}
+      className="review"
+    >
+      <header>
+        <a
+          className="review-link"
+          href={link.url}
+        >
+          {headline}
+        </a>
+        <br/>
+        <span className="author">{byline}</span>
+      </header>
+      <blockquote>{summary_short}</blockquote>
+    </div>
+  );
+};
+
+const MovieReviews = ({ reviews }) => <div className="review-list">{reviews.map(Review)}</div>;
 
 MovieReviews.defaultProps = {
-    reviews: []
-}
+  reviews: []
+};
 
-export default MovieReviews
-
-
-// byline
-// :
-// "Elisabeth Vincentelli"
-// critics_pick
-// :
-// 0
-// date_updated
-// :
-// "2020-10-30 16:04:03"
-// display_title
-// :
-// "Rogue City"
-// headline
-// :
-// "‘Rogue City’ Review: An Action Movie Skimping on Action"
-
-// link
-// :
-// {suggested_link_text: "Read the New York Times Revi…}
-// mpaa_rating
-// :
-// ""
-
-// multimedia
-// :
-// {height: 140, src: "https://static01.nyt.com/images…}
-// opening_date
-// :
-// "2020-10-30"
-// publication_date
-// :
-// "2020-10-30"
-// summary_short
-// :
-// "Olivier Marchal’s film proves that gangsters and crooked cops can speak French and still spin clichés."
+export default MovieReviews;

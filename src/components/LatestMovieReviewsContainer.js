@@ -8,37 +8,67 @@ const URL = 'https://api.nytimes.com/svc/movies/v2/reviews/all.json?'
 
 // Code LatestMovieReviewsContainer Here
 
-export default class LatestMovieReviewsContainer extends Component {
+// export default class LatestMovieReviewsContainer extends Component {
+//     constructor() {
+//     super()
+//     this.state = {
+//         reviews: []
+//         }
+//     }
+//     getbookdata(url) {
+//         fetch(url)
+//         .then(res => res.json())
+//         .then(reviews =>
+//             this.setState({reviews: reviews})
+//             )
+//     }
+
+//     // shouldComponentUpdate(nextProps, nextState) {
+//     //     return this.state.reviews !== nextState.reviews
+//     // }
+//     co
+
+//     componentDidMount() {this.getbookdata(URL)}
+
+//     // componentDidUpdate() {
+//     //     this.getbookdata(URL)
+//     // }
+
+//     render() {
+//         return (
+//             <div className= 'latest-movie-reviews'>
+//             <ul className= 'review-list'>
+//                 {this.state.reviews.results !== undefined ? this.state.reviews.results.map((review, idx) => <MovieReviews  review={review}/>): <p></p> }
+//             </ul>
+//             </div>
+//         )
+//     }
+// }
+
+class LatestMovieReviewsContainer extends Component {
     constructor() {
-    super()
-    this.state = {
+      super();
+  
+      this.state = {
         reviews: []
-        }
+      };
     }
-    getbookdata(url) {
-        fetch(url)
+  
+    componentDidMount() {
+      fetch(URL)
         .then(res => res.json())
-        .then(reviews =>
-            this.setState({reviews: reviews})
-            )
+        .then(response => this.setState({ reviews: response.results }));
     }
-
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     return this.state.reviews !== nextState.reviews
-    // }
-    co
-
-    componentDidMount() {this.getbookdata(URL)}
-
-    componentDidUpdate() {
-        this.getbookdata(URL)
-    }
-
+  
     render() {
-        return (
-            <ul className= 'latest-movie-reviews'>
-                {this.state.reviews.results !== undefined ? this.state.reviews.results.map((review, idx) => <MovieReviews key = {idx} review={review}/>): <p></p> }
-            </ul>
-        )
+      return (
+        <div className="latest-movie-reviews">
+          <h2>The Latest Reviews:</h2>
+          <MovieReviews reviews={this.state.reviews} />
+        </div>
+      );
     }
-}
+  }
+  
+  
+  export default LatestMovieReviewsContainer;
